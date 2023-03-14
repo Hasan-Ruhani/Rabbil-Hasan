@@ -1,4 +1,5 @@
 <?php
+    //...................AM/PM......................
     date_default_timezone_set('Asia/Dhaka');
     echo "1. ".date("h:i:sa"). "\n"; //for 12 hours formate.............1
     echo "2. ".date("H:i:s"). "\n"; //for 24 hours formate..............2
@@ -22,4 +23,35 @@
 
     //.............make time fixed which is same all over the world............
     $unix = date_create();
-    echo "6. ".date_timestamp_get($unix);   //............6
+    echo "6. ".date_timestamp_get($unix). " " . "sec" . "\n";   //............6
+
+    $date3 = strtotime("12th jun, 2023");
+    echo "7. ".$date3." " . "sec". "\n";    //...........................7
+
+    //...................difference between two dates...............
+    $date4 = new DateTime("1:30:15am 1st jan 2022");
+    $date5 = new DateTime("8:45:16pm 28th feb 2024");
+
+    $diff = date_diff($date4, $date5);     //.....methode 01
+    // $diff = $date4 -> diff($date5);     //.....methode 02
+    // echo $diff -> y>0 ? $diff -> y. "year ": '';
+    // echo $diff -> m>0 ? $diff -> m. "month ": '';
+    // echo $diff -> d>0 ? $diff -> d. "day \n": '';
+
+    echo "8.". formateNumber ($diff -> y, "year") .   //...........8
+         formateNumber ($diff -> m, "month") .
+         formateNumber ($diff -> d, "day") .
+         formateNumber ($diff -> h, "hour") .
+         formateNumber ($diff -> i, "minute") .
+         formateNumber ($diff -> s, "second");
+
+    function formateNumber($number, $type){
+        if($number == 0){
+            return '';
+        }
+        if($number > 1){
+            return " {$number} {$type}s";
+        }
+        
+        return " {$number} {$type}";
+    }
