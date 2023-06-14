@@ -12,13 +12,24 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('product_wishes', function (Blueprint $table) {
+
             $table->id();
-            $table->string('email', 50);
+            $table->string('email',50);
             $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products')->restrictOnDelete()->restrictOnUpdate();  //for relationship for products table id field
-            $table->foreign('email')->references('email')->on('profiles')->restrictOnDelete()->restrictOnUpdate();  //for relationship profiels table email field
-            $table->timestamp('created_at') -> useCurrent();
-            $table->timestamp('updated_at') -> useCurrent() -> useCurrentOnUpdate();
+
+            $table->foreign('product_id')->references('id')->on('products')
+                ->restrictOnDelete()
+                ->restrictOnUpdate();
+
+
+            $table->foreign('email')->references('email')->on('profiles')
+                ->restrictOnDelete()
+                ->restrictOnUpdate();
+
+
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+
         });
     }
 
