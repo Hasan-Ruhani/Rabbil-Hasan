@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\TokenVerificationMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,15 +16,41 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-    Route::get('/', function () {
-        return view('welcome');
-    });
+Route::get('/', function () {
+    return view('welcome');
+});
 
-    Route::post('/UserLogin', [UserController::class, 'UserLogin']);
-    Route::post('/UserRegistration', [UserController::class, 'UserRegistration']);
-    Route::post('/SendOTPToEmail', [UserController::class, 'SendOTPToEmail']);
-    Route::post('/OTPVerify', [UserController::class, 'OTPVerify']);
-    Route::post('/SetPaeeword', [UserController::class, 'SetPaeeword']);
-    Route::post('/ProfileUpdate', [UserController::class, 'ProfileUpdate']);
+// API Routes
+Route::post('/user-registration',[UserController::class,'UserRegistration']);
+Route::post('/user-login',[UserController::class,'UserLogin']);
+Route::post('/send-otp',[UserController::class,'SendOTPCode']);
+Route::post('/verify-otp',[UserController::class,'VerifyOTP']);
+Route::post('/reset-password',[UserController::class,'ResetPassword']);
+
+
+// After Authentication
+Route::get("/user-profile-details",[UserController::class,'UserProfile']);
+Route::post("/user-update",[UserController::class,'UserUpdate']);
+
+
+
+
+
+// Logout
+Route::get('/logout',[UserController::class,'UserLogout']);
+
+// Page Routes
+Route::get('/userLogin',[UserController::class,'LoginPage']);
+Route::get('/userRegistration',[UserController::class,'RegistrationPage']);
+Route::get('/sendOtp',[UserController::class,'SendOtpPage']);
+Route::get('/verifyOtp',[UserController::class,'VerifyOTPPage']);
+Route::get('/resetPassword',[UserController::class,'ResetPasswordPage']);
+Route::get('/userProfile',[UserController::class,'ProfilePage']);
+
+// After Authentication
+Route::get('/dashboard',[DashboardController::class,'DashboardPage']);
+
+
+
 
 

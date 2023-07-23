@@ -7,22 +7,73 @@ use Illuminate\Http\Request;
 use App\Helper\JWTToken;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OTPEmail;
+use Exception;
 
 class UserController extends Controller
 {
+    function LoginPage(){
+        return view('pages.auth.login-page');
+    }
+
+    function RegistrationPage(){
+        return view('pages.auth.registration-page');
+    }
+
+    function SendOtpPage(){
+        return view('pages.auth.send-otp-page');
+    }
+
+    function VerifyOTPPage(){
+        return view('pages.auth.verify-otp-page');
+    }
+
+    function ResetPasswordPage(){
+        return view('pages.auth.reset-pass-page');
+    }
+
+    function ProfilePage(){
+        return view('pages.dashboard.profile-page.');
+    }
+
+
+
+
     function UserLogin(Request $request){
         $res = User::where($request->input())->count();
         if($res == 1){
             $token = JWTToken::CreateToken($request->input('email'));
-            return response()->json(['msg' => "success", 'data' => $token]);
+            return response()->json([
+                'status' => "success",
+                'message' => "User login successful"
+            ], 200) -> cookie('token', $token, 60*60*24);
         }
         else{
-            return response()->json(['msg' => "fail", 'data' => "unauthorized"]);
+            return response()->json(['msg' => "fail", 'data' => "unauthorized"], 401);
         }
     }
 
     function UserRegistration(Request $request){
-        return User::create($request->input());
+        try{
+            User::create([
+                'firstName' => $request -> input('firstName'),
+                'lastName' => $request -> input('lastName'),
+                'email' => $request -> input('email'),
+                'mobile' => $request -> input('mobile'),
+                'password' => $request -> input('password')
+            ]);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'User Registration Successful'
+            ], 200);
+        }
+        catch(Exception $e){
+            return response()->json([
+                'status' => 'Failed',
+                'message' => 'User Registration Failed'
+            ], 400);
+            
+        }
+         
     }
 
     function SendOTPToEmail(Request $request){
