@@ -81,7 +81,7 @@
                 window.location.href = "/userLogin";
             }
             else{
-                errorToast("This email alrady exist");
+                errorToast(res.data['message']);
             }
         }
     }
