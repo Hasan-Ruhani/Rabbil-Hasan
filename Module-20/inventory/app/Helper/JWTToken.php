@@ -17,6 +17,17 @@ class JWTToken{
         return JWT::encode($payload, $key, 'HS256');
     }
 
+    public static function CreateTokenForSetPassword($userEmail):string{
+        $key = env('JWT_KEY');                // JWT_KEY inside the .env file
+        $payload = [
+            'iss' => "Laravel-jwt",
+            'ist' => time(),
+            'exp' => time() + 60*60,
+            'userEmail' => $userEmail
+        ];
+        return JWT::encode($payload, $key, 'HS256');
+    }
+
     public static function DecodeToken($token){
         try{
             $key = env('JWT_KEY');                // JWT_KEY inside the .env file
