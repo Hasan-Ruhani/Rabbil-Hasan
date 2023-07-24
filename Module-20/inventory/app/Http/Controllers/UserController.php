@@ -76,32 +76,47 @@ class UserController extends Controller
          
     }
 
-    function SendOTPToEmail(Request $request){
+    function SendOTPCode(Request $request){
         $UserEmail = $request->input('email');
         $otp = rand(100000, 999999);
         $res = User::where($request->input()) -> count();
         if($res == 1){
             Mail::to($UserEmail) -> send(new OTPEmail($otp));
             $res = User::where($request -> input()) -> update(['otp' => $otp]);
-            return response() -> json(['msg' => "success", 'data' => 'OTP send to your email']);
+            return response() -> json(['msg' => "success", 'data' => 'OTP send to your email'], 200);
         }
         else{
-            return response() -> json(['msg' => "fail", 'data' => 'unauthorized']);
+            return response() -> json(['msg' => "fail", 'data' => 'unauthorized'], 401);
         }
     }
     
-    function OTPVerify(Request $request){
-        $res = User::where($request->input()) -> count();
-        if($res == 1){
-            $res = User::where($request -> input()) -> update(['otp' => 0]);
-            return response() -> json(['msg' => "success", 'data' => 'Verified']);
+    function VerifyOTP(Request $request){
+        $email = $request->input('email');
+        $otp = $request->input('otp');
+
+        $count = User::where('email', '=', $email)
+        -> where('otp', '=', $otp)->count();
+
+        if($count == 1){
+            // database otp update
+            User::where('email', '=', $email)->update(['otp' => '0']);
+
+            // password reset token issue
+            $token = JWTToken::CreateTokenForSetPassword($request->input('email'));
+            return response() -> json([
+                'status' => "success",
+                'message' => 'OTP Verification Successful'
+            ], 200) -> cookie('token', $token, 60*60*24);
         }
         else{
-            return response() -> json(['msg' => "fail", 'data' => 'unauthorized']);
+            return response() -> json([
+                'msg' => "fail",
+                 'data' => 'unauthorized'
+                ], 400);
         }
     }
 
-    function SetPaeeword(Request $request){
+    function ResetPassword(Request $request){
         User::where($request -> input()) -> update(['password' => $request -> input('password')]);
         return response() -> json(['msg' => "success", 'data' => 'Updated']);
     }
