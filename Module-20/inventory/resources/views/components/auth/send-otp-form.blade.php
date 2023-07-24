@@ -16,6 +16,28 @@
 </div>
 
 <script>
+
+    // async function onClick() {
+    //     let email = document.getElementById('email').value;
+    //     if(email.lenght === 0){
+    //         errorToast("Email Address Required");
+    //     }
+    //     else{
+    //         showLoader();
+    //         let res = await axios.post('/send-otp');
+    //         hideLoader();
+
+    //         if(res.status == 200){
+    //             sessionStorage.setItem('email', email);
+    //             window.location.href = "/veriftOtp";
+    //         }
+    //         else{
+    //             errorToast("Email Not Found");
+    //         }
+    //     }
+    // }
+
+
    async function VerifyEmail() {
         let email=document.getElementById('email').value;
         if(email.length===0){
