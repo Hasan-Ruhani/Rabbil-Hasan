@@ -56,6 +56,36 @@
 
 
 <div id="sideNavRef" class="side-nav-open">
+    <a href="{{url("/dashboard")}}" class="side-bar-item">
+        <i class="fa fa-chevron-circle-right  text-dark"></i>
+        <span class="side-bar-item-caption">Dashboard</span>
+    </a>
+
+    <a href="{{url("/customerPage")}}" class="side-bar-item">
+        <i class="fa fa-chevron-circle-right  text-dark"></i>
+        <span class="side-bar-item-caption">Customer</span>
+    </a>
+
+    <a href="{{url("/categoryPage")}}" class="side-bar-item">
+        <i class="fa fa-chevron-circle-right  text-dark"></i>
+        <span class="side-bar-item-caption">Category</span>
+    </a>
+
+    <a href="{{url("/productPage")}}" class="side-bar-item">
+        <i class="fa fa-chevron-circle-right  text-dark"></i>
+        <span class="side-bar-item-caption">Product</span>
+    </a>
+
+
+    <a href="#Getting-Started" class="side-bar-item">
+        <i class="fa fa-chevron-circle-right  text-dark"></i>
+        <span class="side-bar-item-caption">Invoice</span>
+    </a>
+
+    <a href="#Getting-Started" class="side-bar-item">
+        <i class="fa fa-chevron-circle-right  text-dark"></i>
+        <span class="side-bar-item-caption">Report</span>
+    </a>
 </div>
 
 
