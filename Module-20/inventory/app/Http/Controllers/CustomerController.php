@@ -7,6 +7,11 @@ use App\Models\Customer;
 
 class CustomerController extends Controller
 {
+
+    function CustomerPage(){
+        return view('pages.dashboard.customer-page');
+    }
+
     function CustomerCreate(Request $request){
         $user_id = $request->header('id');
         return Customer::create([
