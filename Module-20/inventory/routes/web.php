@@ -60,11 +60,12 @@ Route::get('/list-customer', [CustomerController::class, 'CustomerList'])->middl
 Route::post('/delete-customer', [CustomerController::class, 'CustomerDelete'])->middleware(TokenVerificationMiddleware::class);
 Route::post('/update-customer', [CustomerController::class, 'CustomerUpdate'])->middleware(TokenVerificationMiddleware::class);
 
-                                                       // Customer Route
+                                                       // Category Route
 Route::post('/create-category', [CategoryController::class, 'CategoryCreate'])->middleware(TokenVerificationMiddleware::class);
 Route::get('/list-category', [CategoryController::class, 'CategoryList'])->middleware(TokenVerificationMiddleware::class);
 Route::post('/delete-category', [CategoryController::class, 'CategoryDelete'])->middleware(TokenVerificationMiddleware::class);
 Route::post('/update-category', [CategoryController::class, 'CategoryUpdate'])->middleware(TokenVerificationMiddleware::class);
+Route::post('/category-by-id', [CategoryController::class, 'CategoryByID'])->middleware(TokenVerificationMiddleware::class);
 
                                                        // Product Route
 Route::post('/create-product', [ProductController::class, 'CreateProduct'])->middleware(TokenVerificationMiddleware::class);
