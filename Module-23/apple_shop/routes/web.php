@@ -24,6 +24,7 @@ Route::get('/', [HomeController::class, 'page']);
 Route::get('/BrandList', [BrandController::class, 'BrandList']);
 Route::get('/CategoryList', [CategoryController::class, 'CategoryList']);
 
+//.................................
 
 Route::get('/ListProductByCategory/{id}', [ProductController::class, 'ListProductByCategory']);
 Route::get('/ListProductByBrand/{id}', [ProductController::class, 'ListProductByBrand']);
