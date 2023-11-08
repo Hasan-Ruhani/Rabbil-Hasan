@@ -1,0 +1,42 @@
+{
+	"folders": [
+		{
+			"name": "ajax",
+			"path": "../../../../ajax"
+		},
+		{
+			"name": "Hasin-Haydar",
+			"path": "../../../../Hasin-Haydar"
+		},
+		{
+			"name": "Laravel",
+			"path": "../../../../Laravel"
+		},
+		{
+			"name": "Ostad",
+			"path": "../../../../Ostad"
+		},
+		{
+			"name": "practice",
+			"path": "../../../../practice"
+		},
+		{
+			"name": "pre-recorded",
+			"path": "../../../../pre-recorded"
+		},
+		{
+			"name": "Rabbil-Hasan",
+			"path": "../../.."
+		},
+		{
+			"name": "Test",
+			"path": "../../../../Test"
+		},
+		{
+			"path": "../../../../project"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "practice"
+	}
+}
