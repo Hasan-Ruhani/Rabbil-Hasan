@@ -17,8 +17,6 @@ Route::post('/CreateProfile', [ProfileController::class, 'CreateProfile'])->midd
 Route::get('/ReadProfile', [ProfileController::class, 'ReadProfile'])->middleware([TokenAuthenticate::class]);
 Route::get('/logout',[UserController::class,'UserLogout']);
 
-
-
 Route::get('/', [HomeController::class, 'page']);
 
 Route::get('/BrandList', [BrandController::class, 'BrandList']);
