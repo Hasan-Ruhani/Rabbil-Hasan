@@ -44,7 +44,6 @@
          formateNumber ($diff -> h, "hour") .
          formateNumber ($diff -> i, "minute") .
          formateNumber ($diff -> s, "second");
-
     function formateNumber($number, $type){
         if($number == 0){
             return '';
